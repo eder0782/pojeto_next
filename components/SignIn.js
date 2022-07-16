@@ -13,6 +13,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import api from '../utils/api';
+import { Alert } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Copyright(props) {
   return (
@@ -30,18 +33,38 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
+  const [aler,setAlert]=React.useState("teste")
+  function notify_erro(message){toast.warning(message,{
+    theme:"colored"
+  })}
+  function notify_sucssec(message){toast.success(message,{
+    theme:"colored"
+  })}
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    
+ 
 
    api.post('/login', {
       email: data.get('email'),
       password: data.get('password')
     })
     .then(function (response) {
+      console.log('funcionou')
       console.log(response.data);
+      if(response.data.error){
+        //setAlert()
+        notify_erro(response.data.message);
+
+      }
+      else{
+        notify_sucssec(response.data.message);
+      }
     })
     .catch(function (error) {
+     
       console.log(error);
     })
     /*console.log({
@@ -51,9 +74,14 @@ export default function SignIn() {
   };
 
   return (
+    <>
+    
     <ThemeProvider theme={theme}>
+    
       <Container component="main" maxWidth="xs">
+     
         <CssBaseline />
+        <ToastContainer />
         <Box
           sx={{
             marginTop: 8,
@@ -118,5 +146,6 @@ export default function SignIn() {
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    </>
   );
 }
