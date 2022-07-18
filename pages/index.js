@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <Head>
       
-      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/> 
+      <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"/> 
       </Head>
       <SignIn />
     
