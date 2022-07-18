@@ -41,13 +41,13 @@ export default function SignIn() {
     theme:"colored"
   })}
   
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     
  
 
-   api.post('/login', {
+   await api.post('/login', {
       email: data.get('email'),
       password: data.get('password')
     })
