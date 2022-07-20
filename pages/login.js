@@ -23,6 +23,8 @@ import { EmailIcon, LockIcon } from '@chakra-ui/icons'
 
 // 
 function Login() {
+
+
     return (
 
         <>
@@ -33,23 +35,28 @@ function Login() {
                 justifyContent="center"
                 alignItems="center">
                 <Avatar bg="teal.500" />
-                <Heading color="teal.400">Bem Vindo</Heading>
+                <Heading color="teal.400" marginBottom='10'>Bem Vindo</Heading>
+
 
                 <Box display='flex' padding='10' boxShadow='xl' maxWidth='90%' flexDirection='column' justifyContent='center' height='350' borderRadius='10' bgColor='white' width='400px'>
                     <FormControl paddingBottom='10'>
                         <InputGroup>
-                            <InputLeftElement
-                                children={<EmailIcon color='gray.300' />} />
+                        <InputLeftElement>
+                                {/* <LockIcon color='gray.300' /> */}
+                                <EmailIcon color='gray.300' />
+                            </InputLeftElement>
                             <Input type='email' placeholder="Endereço de Email" />
-                            <InputLeftElement />
+
                         </InputGroup>
                     </FormControl>
                     <FormControl paddingBottom='5'>
                         <InputGroup>
-                            <InputLeftElement
-                                children={<LockIcon color='gray.300' />} />
+                            <InputLeftElement>
+                                <LockIcon color='gray.300' />
+                                {/* <EmailIcon color='gray.300' /> */}
+                            </InputLeftElement>
                             <Input type='password' placeholder="Senha" />
-                            <InputLeftElement />
+
                         </InputGroup>
                     </FormControl>
                     <FormControl >
