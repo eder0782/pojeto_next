@@ -17,6 +17,7 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, AddIcon } from '@chakra-ui/icons';
+import Router from 'next/router'
 
 const Links = ['Dashboard', 'Projects', 'Team'];
 
@@ -65,8 +66,10 @@ export default function NavBar() {
               colorScheme={'teal'}
               size={'sm'}
               mr={4}
-              leftIcon={<AddIcon />}>
-              Action
+              leftIcon={<AddIcon />}
+              onClick={()=>{ Router.push('/login')}}>
+              Login
+              
             </Button>
             <Menu>
               <MenuButton

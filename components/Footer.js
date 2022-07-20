@@ -64,7 +64,7 @@ import {
         // bgColor='tomato'
         width='100%'
         color={useColorModeValue('gray.700', 'gray.200')}
-        position='absolute' bottom='0' left='0' >
+        position='relative' bottom='0' left='0' >
         <Container
           as={Stack}
           maxW={'6xl'}

@@ -1,7 +1,8 @@
 
-import { Box } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import NavBar from "../components/NavBar";
 import SmallCentered from "../components/Footer";
+import ArticleList from "../components/Blog";
 
 
 function Home2() {
@@ -11,7 +12,8 @@ function Home2() {
         <NavBar>
 
         </NavBar>
-
+        
+        <ArticleList/>
         <SmallCentered />
 
 

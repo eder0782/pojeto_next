@@ -18,12 +18,16 @@ import {
     Heading,
     Avatar
 } from '@chakra-ui/react'
-
+import NextLink from "next/link"
 import { EmailIcon, LockIcon } from '@chakra-ui/icons'
+import Router from "next/router";
 
 // 
 function Login() {
+    function handleLogin(){
+        Router.push('/home2')
 
+    }
 
     return (
 
@@ -32,8 +36,10 @@ function Login() {
                 width="100wh"
                 height="100vh"
                 backgroundColor="gray.200"
-                justifyContent="center"
-                alignItems="center">
+                // justifyContent="center"
+                alignItems="center"
+                paddingTop='5rem'>
+                    
                 <Avatar bg="teal.500" />
                 <Heading color="teal.400" marginBottom='10'>Bem Vindo</Heading>
 
@@ -41,7 +47,7 @@ function Login() {
                 <Box display='flex' padding='10' boxShadow='xl' maxWidth='90%' flexDirection='column' justifyContent='center' height='350' borderRadius='10' bgColor='white' width='400px'>
                     <FormControl paddingBottom='10'>
                         <InputGroup>
-                        <InputLeftElement>
+                            <InputLeftElement>
                                 {/* <LockIcon color='gray.300' /> */}
                                 <EmailIcon color='gray.300' />
                             </InputLeftElement>
@@ -71,16 +77,19 @@ function Login() {
                             variant="solid"
                             colorScheme="teal"
                             width="full"
+                            onClick={handleLogin}
                         >
                             Login
                         </Button>
                     </FormControl>
 
                     <Box>
-                        New to us?{" "}
-                        <Link color="teal.500" href="#">
-                            Sign Up
-                        </Link>
+                        Não tem Cadastro?{" "}
+                        <NextLink href="/signup">
+                            <Link color="teal.500" >
+                                Cadastre-se
+                            </Link>
+                        </NextLink>
                     </Box>
 
 

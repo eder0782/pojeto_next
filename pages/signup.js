@@ -1,44 +1,119 @@
-import React from 'react'
+import {
+    Flex,
+    Box,
+    FormControl,
+    FormLabel,
+    Input,
+    InputGroup,
+    HStack,
+    InputRightElement,
+    Stack,
+    Button,
+    Heading,
+    Text,
+    useColorModeValue,
+    Link,
 
-import { Input, InputGroup, InputRightElement, Button, Stack,InputLeftElement } from '@chakra-ui/react'
-import {PhoneIcon, CheckIcon } from '@chakra-ui/icons'
 
-function Signup() {
-    const [show, setShow] = React.useState(false)
-    const handleClick = () => setShow(!show)
+
+} from '@chakra-ui/react';
+import NextLink from "next/link"
+import { useState } from 'react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+
+export default function SignupCard() {
+    const [showPassword, setShowPassword] = useState(false);
+    const breakpoints = {
+        base:'column',
+        md:'row'
+
+        
+      }
 
     return (
-        <Stack spacing={4}>
-            <InputGroup>
-                <InputLeftElement
-                    pointerEvents='none'
-                    
-                >
-                    <PhoneIcon color='gray.300' />
-                </InputLeftElement>
-                <Input type='tel' placeholder='Phone number' />
-            </InputGroup>
 
-            <InputGroup>
-                <InputLeftElement
-                    pointerEvents='none'
-                    color='gray.300'
-                    fontSize='1.2em'
-                    
-                >
-                    $
-                </InputLeftElement>
-                <InputRightElement >
-                <CheckIcon color='green.500' />
-                </InputRightElement  >
-                
-                <Input placeholder='Enter amount' />
-                
-            </InputGroup>
-        </Stack>
-    )
+        <Flex
+            minH={'100vh'}
+            align={'center'}
+            justify={'center'}
+
+            backgroundColor="gray.200">
+            {/* <Text fontSize={{ base: '24px', md: '40px', lg: '56px' }}>
+                This is responsive text
+            </Text> */}
+            <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+                <Stack align={'center'}>
+                    <Heading fontSize={'4xl'} color='teal.500' textAlign={'center'}>
+                        Cadastre-se
+                    </Heading>
+                    <Text fontSize={'lg'} align='center' color={'teal.400'}>
+                        Tenha acesso à todos os nossos recursos!!
+                    </Text>
+                </Stack>
+                <Box
+                    rounded={'lg'}
+                    bg={useColorModeValue('white', 'gray.700')}
+                    boxShadow={'lg'}
+                    p={8}>
+                    <Stack spacing={4}>
+                        <HStack display='flex' flexDir={breakpoints} >
+
+                            <FormControl id="firstName" isRequired>
+                                <FormLabel>Nome</FormLabel>
+                                <Input type="text" />
+                            </FormControl>
+
+
+                            <FormControl id="lastName">
+                                <FormLabel>Sobrenome</FormLabel>
+                                <Input type="text" />
+                            </FormControl>
+
+                        </HStack>
+                        <FormControl id="email" isRequired>
+                            <FormLabel>Email</FormLabel>
+                            <Input type="email" />
+                        </FormControl>
+                        <FormControl id="password" isRequired>
+                            <FormLabel>Senha</FormLabel>
+                            <InputGroup>
+                                <Input type={showPassword ? 'text' : 'password'} />
+                                <InputRightElement h={'full'}>
+                                    <Button
+                                        variant={'ghost'}
+                                        onClick={() =>
+                                            setShowPassword((showPassword) => !showPassword)
+                                        }>
+                                        {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                                    </Button>
+                                </InputRightElement>
+                            </InputGroup>
+                        </FormControl>
+                        <Stack spacing={10} pt={2}>
+                            <Button
+                                loadingText="Submitting"
+                                size="lg"
+                                bg={'teal.500'}
+                                color={'white'}
+                                _hover={{
+                                    bg: 'teal.400',
+                                }}>
+                                Enviar
+                            </Button>
+                        </Stack>
+
+                        <Stack pt={6}>
+                            <Text align={'center'}>
+                                Já tem cadastro?
+                                <NextLink href='/login' passHref>
+                                    <Link color="teal.500" >Login</Link>
+                                </NextLink>
+
+                            </Text>
+                        </Stack>
+                    </Stack>
+                </Box>
+            </Stack>
+        </Flex>
+    );
 }
-
-
-
-export default Signup;
