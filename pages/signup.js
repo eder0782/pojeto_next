@@ -56,9 +56,9 @@ export default function SignupCard() {
                     boxShadow={'lg'}
                     p={8}>
                     <Stack spacing={4}>
-                        <HStack display='flex' flexDir={breakpoints} >
+                        <Box display='flex'  flexDir={breakpoints} >
 
-                            <FormControl id="firstName" isRequired>
+                            <FormControl  id="firstName" marginEnd='2' isRequired>
                                 <FormLabel>Nome</FormLabel>
                                 <Input type="text" />
                             </FormControl>
@@ -69,7 +69,7 @@ export default function SignupCard() {
                                 <Input type="text" />
                             </FormControl>
 
-                        </HStack>
+                        </Box>
                         <FormControl id="email" isRequired>
                             <FormLabel>Email</FormLabel>
                             <Input type="email" />
