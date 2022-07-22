@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import NextLink from "next/link"
 import {
   Box,
   Flex,
@@ -16,24 +17,32 @@ import {
   useColorModeValue,
   Stack,
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon, AddIcon } from '@chakra-ui/icons';
+import { HamburgerIcon, CloseIcon} from '@chakra-ui/icons';
 import Router from 'next/router'
-import { Fade, ScaleFade, Slide, SlideFade,Collapse } from '@chakra-ui/react'
+import { Collapse } from '@chakra-ui/react'
 
-const Links = ['Dashboard', 'Projects', 'Team'];
+const Links = [
+  { nome:'Dashboard', linkRef:'/home2'}, 
+  {nome:'Projects',linkRef:'#'}, 
+  {nome:'Team',linkRef:'#'},
+  {nome:'Tabela de Usuários',linkRef:'/users'}
+];
 
-const NavLink = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
-    }}
-    href={'#'}>
-    {children}
-  </Link>
+const NavLink = ({ children,linkRef='#' }) => (
+  <NextLink href={linkRef}>
+    <Link
+      px={2}
+      py={1}
+      rounded={'md'}
+      _hover={{
+        textDecoration: 'none',
+        bg: useColorModeValue('gray.200', 'gray.700'),
+      }}
+      // href={linkRef}
+      >
+      {children}
+    </Link>
+  </NextLink>
 );
 
 const Logo = (props) => {
@@ -77,7 +86,7 @@ export default function NavBar() {
               spacing={4}
               display={{ base: 'none', md: 'flex' }}>
               {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                <NavLink key={link.nome} linkRef ={link.linkRef}>{link.nome}</NavLink>
               ))}
             </HStack>
           </HStack>
@@ -121,7 +130,7 @@ export default function NavBar() {
             <Box pb={4} display={{ md: 'none' }}>
               <Stack as={'nav'} spacing={4}>
                 {Links.map((link) => (
-                  <NavLink key={link}>{link}</NavLink>
+                  <NavLink key={link.nome} linkRef={link.linkRef}>{link.nome}</NavLink>
                 ))}
               </Stack>
             </Box>
