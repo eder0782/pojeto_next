@@ -16,6 +16,7 @@ import {
     useColorModeValue,
     Link,
     AlertDialog,
+    Avatar
 
 
 
@@ -112,6 +113,7 @@ export default function SignupCard() {
             <form onSubmit={handleSubmit}>
                 <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
                     <Stack align={'center'}>
+                        <Avatar bg="teal.500" />
                         <Heading fontSize={'4xl'} color='teal.500' textAlign={'center'}>
                             Cadastre-se
                         </Heading>
