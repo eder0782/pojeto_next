@@ -27,6 +27,8 @@ export default function Tabela({ object }) {
         // console.log(typeof(email));
         await api.delete(`/user/${delEmail}`).then((response) => {
             console.log(response.data);
+            // funcaoAtualiza();
+
         }).catch((err) => {
             console.log(err);
         })

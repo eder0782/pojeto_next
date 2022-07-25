@@ -29,7 +29,7 @@ export default function Users() {
     useEffect(() => {
         handleLista();
         // mudaColor();
-    }, lis);
+    },);
     // useEffect();
 
     useEffect(() => {
@@ -67,7 +67,7 @@ export default function Users() {
         // mudaColor();
         obj['colorCard'] = colorCard;
         // console.log(obj);
-        return <Tabela key={obj._id} object={obj}></Tabela>
+        return <Tabela key={obj._id} object={obj} ></Tabela>
     }
     return (
         <div>

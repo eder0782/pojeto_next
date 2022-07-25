@@ -48,6 +48,7 @@ export default function SignupCard() {
     const pass =useRef('');
     const name =useRef('');
     const sobrenome =useRef('');
+    const [loading,setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const breakpoints = {
         base: 'column',
@@ -64,6 +65,7 @@ export default function SignupCard() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log('enviou');
+        setLoading(true);
         await api.post('/user', {
             name: name.current.value, 
             sobrenome: sobrenome.current.value,
@@ -90,6 +92,8 @@ export default function SignupCard() {
            
             console.log(error);
           })
+
+          setLoading(false);
 
     }
 
@@ -156,7 +160,9 @@ export default function SignupCard() {
                             </FormControl>
                             <Stack spacing={10} pt={2}>
                                 <Button
-                                    loadingText="Submitting"
+                                    isLoading={loading}
+                                    spinnerPlacement='end'
+                                    loadingText='Enviando'
                                     type='submit'
                                     size="lg"
                                     bg={'teal.500'}
