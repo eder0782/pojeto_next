@@ -91,20 +91,34 @@ function Login() {
         <>
             <ToastContainer />
             <Flex flexDirection="column"
-                width="100wh"
+                width="100%"
                 height="100vh"
                 backgroundColor="gray.200"
                 // justifyContent="center"
                 alignItems="center"
-                paddingTop='5rem'>
+                // paddingTop='5rem'
+                >
                 <form onSubmit={handleLogin}>
-                    <Stack align="Center" spacing="4">
+                    <Stack align="Center" spacing="4" mx={'auto'} maxW={'lg'} py={12} px={6}>
                         <Avatar bg="teal.500" />
                         <Heading color="teal.400" marginBottom='10'>Bem Vindo</Heading>
 
                         {/* <form onSubmit={handleLogin}> */}
 
-                        <Box onSubmit={handleLogin} display='flex' paddingLeft='10' paddingRight="10" boxShadow='xl' maxWidth='90%' flexDirection='column' justifyContent='center' height='350' borderRadius='10' bgColor='white' width='400px'>
+                        <Box 
+                        // onSubmit={handleLogin} 
+                        display='flex' 
+                        paddingLeft='10' 
+                        paddingRight="10" 
+                        boxShadow='xl'
+                        //  maxWidth='90%' 
+                         flexDirection='column' 
+                         justifyContent='center' 
+                         height='350' 
+                         borderRadius='10'
+                          bgColor='white'
+                        //    width='25rem'
+                           >
                             <FormControl isRequired paddingBottom='10'>
                                 <InputGroup>
                                     <InputLeftElement>
