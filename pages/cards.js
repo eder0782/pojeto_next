@@ -45,8 +45,8 @@ export default function Cards() {
                         user.length > 0 ?
                             user.map((obj) => {
                                 return (
-                                    <Box>
-                                        <Card key={obj._id} object={obj} />
+                                    <Box key={obj._id}>
+                                        <Card  object={obj}></Card>
                                     </Box>
                                 )
                                 // <WrapItem>
