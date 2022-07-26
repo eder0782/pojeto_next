@@ -23,7 +23,7 @@ export default function Cards() {
 
     useEffect(() => {
         handleUser();
-    }, [])
+    },)
 
     async function handleUser() {
         await api.get('/listUserAll')
