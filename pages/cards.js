@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import api from "../utils/api"
 import Card from "../components/Card"
+import SmallCentered from "../components/Footer"
 import NavBar from "../components/NavBar"
 import {
     Flex,
@@ -38,6 +39,7 @@ export default function Cards() {
         <div>
             <NavBar />
 
+
             <Container maxW="80rem" centerContent >
                 <SimpleGrid columns={{ base: '1', lg: '2' }} spacing={'10'}>
 
@@ -59,6 +61,7 @@ export default function Cards() {
                     }
                 </SimpleGrid>
             </Container>
+            <SmallCentered/>
 
         </div>
     )

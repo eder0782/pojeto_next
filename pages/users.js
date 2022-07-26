@@ -5,6 +5,7 @@ import api from "../utils/api";
 import Tabela from "../components/Tabela";
 import NavBar from "../components/NavBar";
 import Link from 'next/link'
+import SmallCentered from "../components/Footer";
 import {
     Table,
     Thead,
@@ -102,6 +103,7 @@ export default function Users() {
                 </TableContainer>
                 
             </Container>
+            <SmallCentered/>
         </div>
 
     )

@@ -13,6 +13,7 @@ import {
 
 } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
+import Footer from '../components/Footer'
 
 export default function Tabela({ object }) {
     //console.log(object);
