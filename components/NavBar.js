@@ -24,7 +24,7 @@ import { Collapse } from '@chakra-ui/react'
 const Links = [
   { nome:'Dashboard', linkRef:'/home2'}, 
   {nome:'Projects',linkRef:'#'}, 
-  {nome:'Team',linkRef:'#'},
+  {nome:'Cards',linkRef:'/cards'},
   {nome:'Tabela de Usuários',linkRef:'/users'}
 ];
 

@@ -37,7 +37,7 @@ export default function Users() {
     }, [objeto])
     async function handleLista() {
         // console.log('listou');
-        api.get('/listUserAll')
+       await api.get('/listUserAll')
             .then(response => {
 
                 setLis(response.data);
