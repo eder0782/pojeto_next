@@ -18,14 +18,14 @@ import {
     from "@chakra-ui/react";
 
 
-export default function Cards() {
+export default function Cards({users}) {
     const [user, setUser] = useState([])
 
     useEffect(() => {
-        handleUser();
+        setUser(users);
     },)
 
-    async function handleUser() {
+   /* async function handleUser() {
         await api.get('/listUserAll')
             .then((response) => {
                 setUser(response.data)
@@ -33,7 +33,7 @@ export default function Cards() {
             .catch((err) => {
                 console.log(err)
             })
-    }
+    }*/
 
     return (
         <div>
@@ -66,4 +66,25 @@ export default function Cards() {
         </div>
     )
 
+}
+
+export async function getStaticProps(){
+
+   const resposta= await api.get('/listUserAll')
+          /*  .then((response) => {
+               // setUser(response.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })*/
+
+    return {
+        props: {
+          users: resposta.data
+        },
+        // Next.js will attempt to re-generate the page:
+        // - When a request comes in
+        // - At most once every 10 seconds
+        revalidate: 10, // In seconds
+      }
 }
