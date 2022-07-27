@@ -91,7 +91,7 @@ export default function ModalDelete({ state, user }) {
           //   finalFocusRef={finalRef}
           isOpen={isOpen}
           onClose={onClose}
-          size={{base:'md', lg:'lg'}}
+          size={{base:'xs', md:'lg'}}
         >
           <ModalOverlay />
           <ModalContent>

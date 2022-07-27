@@ -24,13 +24,31 @@ import {
 
 export default function Cards() {
     const [user, setUser] = useState([])
-    const [progress,setProgress] = useState('hidden');
+    const [progress,setProgress] = useState("hidden");
 
-    useEffect(() => {
-        handleUser()
+    useEffect( () => {
+        // setProgress('visible');
+        //  api.get('/listUserAll')
+        // .then((response) => {
+        //     setUser(response.data)
+        // })
+        // .catch((err) => {
+        //     console.log(err)
+        // })
+        handleUser();
+        // setTimeout(() => {
+        //     setProgress('hidden')
+            
+        // }, 1500);
         // Router.replace('/cards');
-    },)
+    },[user])
+    // if(progress==="hidden"){
+    //     setProgress("visible")
+    //     setTimeout(()=>{
+    //         setProgress("hidden")
+    //     },1000)
 
+    // }
     async function handleUser() {
       //  setProgress('visible')
         await api.get('/listUserAll')
@@ -47,8 +65,8 @@ export default function Cards() {
         <div>
             <NavBar />
 
-            <Box position='fixed' visibility={progress} top='30%' left='50%'>
-                <CircularProgress isIndeterminate color='blue.300' />
+            <Box position='fixed'  visibility={progress }  top='30%' left='50%'>
+                <CircularProgress  isIndeterminate color='blue.300' />
             </Box>
             <Container maxW="80rem" centerContent >
                 <SimpleGrid columns={{ base: '1', lg: '2' }} spacing={'10'}>
