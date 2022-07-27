@@ -1,9 +1,12 @@
 
 import { useEffect, useState } from "react"
+// import { useDisclosure } from '@chakra-ui/react'
 import api from "../utils/api"
 import Card from "../components/Card"
 import SmallCentered from "../components/Footer"
 import NavBar from "../components/NavBar"
+
+import Router from 'next/router';
 import {
     Flex,
     Wrap,
@@ -13,19 +16,23 @@ import {
     Center,
     SimpleGrid,
     Container,
-    Box
+    Box,
+    CircularProgress
 }
     from "@chakra-ui/react";
 
 
-export default function Cards({users}) {
+export default function Cards() {
     const [user, setUser] = useState([])
+    const [progress,setProgress] = useState('hidden');
 
     useEffect(() => {
-        setUser(users);
+        handleUser()
+        // Router.replace('/cards');
     },)
 
-   /* async function handleUser() {
+    async function handleUser() {
+      //  setProgress('visible')
         await api.get('/listUserAll')
             .then((response) => {
                 setUser(response.data)
@@ -33,13 +40,16 @@ export default function Cards({users}) {
             .catch((err) => {
                 console.log(err)
             })
-    }*/
+       // setProgress('hidden')
+    }
 
     return (
         <div>
             <NavBar />
 
-
+            <Box position='fixed' visibility={progress} top='30%' left='50%'>
+                <CircularProgress isIndeterminate color='blue.300' />
+            </Box>
             <Container maxW="80rem" centerContent >
                 <SimpleGrid columns={{ base: '1', lg: '2' }} spacing={'10'}>
 
@@ -48,7 +58,7 @@ export default function Cards({users}) {
                             user.map((obj) => {
                                 return (
                                     <Box key={obj._id}>
-                                        <Card  object={obj}></Card>
+                                        <Card object={obj}></Card>
                                     </Box>
                                 )
                                 // <WrapItem>
@@ -61,30 +71,30 @@ export default function Cards({users}) {
                     }
                 </SimpleGrid>
             </Container>
-            <SmallCentered/>
+            <SmallCentered />
 
         </div>
     )
 
 }
 
-export async function getStaticProps(){
+// export async function getServerSideProps(){
 
-   const resposta= await api.get('/listUserAll')
-          /*  .then((response) => {
-               // setUser(response.data)
-            })
-            .catch((err) => {
-                console.log(err)
-            })*/
+//    const resposta= await api.get('/listUserAll')
+//           /*  .then((response) => {
+//                // setUser(response.data)
+//             })
+//             .catch((err) => {
+//                 console.log(err)
+//             })*/
 
-    return {
-        props: {
-          users: resposta.data
-        },
-        // Next.js will attempt to re-generate the page:
-        // - When a request comes in
-        // - At most once every 10 seconds
-        revalidate: 10, // In seconds
-      }
-}
+//     return {
+//         props: {
+//           users: resposta.data
+//         }
+//         // Next.js will attempt to re-generate the page:
+//         // - When a request comes in
+//         // - At most once every 10 seconds
+//         // revalidate: 10, // In seconds
+//       }
+// }

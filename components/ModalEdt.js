@@ -23,6 +23,22 @@ import {
   FormControl,
   FormLabel
 } from '@chakra-ui/react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+function Alert(error, message) {
+  if (error) {
+      toast.error(message, {
+          theme: "colored"
+      })
+
+  }
+  else {
+      toast.success(message, {
+          theme: "colored"
+      })
+  }
+}
 
 
 export default function ModalEdit({ state, user }) {
@@ -51,6 +67,7 @@ export default function ModalEdit({ state, user }) {
             admin:true
         }).then((response)=>{
             console.log(response.data)
+            Alert(response.data.error,response.data.message);
         }).catch((err)=>{
             console.log(err)
         })
@@ -68,6 +85,9 @@ export default function ModalEdit({ state, user }) {
           //   finalFocusRef={finalRef}
           isOpen={isOpen}
           onClose={onClose}
+          size={{base:'xs', md:'lg'}}
+          
+          
         >
           <ModalOverlay />
           <ModalContent>

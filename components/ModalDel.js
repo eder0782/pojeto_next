@@ -3,6 +3,7 @@ import { useDisclosure } from '@chakra-ui/react'
 import api from '../utils/api'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// import Router from 'next/router';
 import ToastMessage from './ToastMessage';
 import {
 //   Badge,
@@ -72,11 +73,14 @@ export default function ModalDelete({ state, user }) {
             // },500)
             // funcaoAtualiza();
             Alert(response.data.error,response.data.message);
+            
 
         }).catch((err) => {
             console.log(err);
         })
         onClose();
+        //Router.reload(Window.locarion)
+        
     }
   
     return (
@@ -87,6 +91,7 @@ export default function ModalDelete({ state, user }) {
           //   finalFocusRef={finalRef}
           isOpen={isOpen}
           onClose={onClose}
+          size={{base:'md', lg:'lg'}}
         >
           <ModalOverlay />
           <ModalContent>

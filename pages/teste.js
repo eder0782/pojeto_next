@@ -1,33 +1,17 @@
+import { useState } from 'react';
+import { CircularProgress, CircularProgressLabel, Button, Box } from '@chakra-ui/react'
 
-
-
-  import { useDisclosure } from '@chakra-ui/react'
-  import { useEffect, useState, useRef } from 'react';
   
-import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    Button,
-    FormControl,
-    FormLabel,
-    Input
-} from '@chakra-ui/react'
-
 export default function Teste(){
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const [estado,setEstado] = useState(false);
+    // const { isOpen, onOpen, onClose } = useDisclosure();
+    const [estado,setEstado] = useState('hidden');
     function handleEstato(){
-        if(estado===false){
-            setEstado(true)
+        if(estado==='hidden'){
+            setEstado('visible')
         }
         setTimeout(()=>{
-            setEstado(false)
-        },500)
+            setEstado('hidden')
+        },3000)
     //    else{
     //         setEstado(false)
     //     }
@@ -35,61 +19,12 @@ export default function Teste(){
     return(
         <>
          <Button onClick={()=>{handleEstato()}}>Open Modal</Button>
-        <InitialFocus state={estado} />
+              <Box position='fixed' visibility={estado} top='30%' left='50%'>
+         <CircularProgress   isIndeterminate color='blue.300' />
+         </Box>
         </>
     )
 }
 
 
 
-export function InitialFocus({state}) {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    useEffect(()=>{
-        if(state){
-            onOpen();
-        }
-        
-    },)
-    const initialRef = useRef(null)
-    const finalRef = useRef(null)
-  
-    return (
-      <>
-        {/* <Button onClick={onOpen}>Open Modal</Button> */}
-        {/* <Button ml={4} ref={finalRef}>
-          I'll receive focus on close
-        </Button> */}
-  
-        <Modal
-          initialFocusRef={initialRef}
-        //   finalFocusRef={finalRef}
-          isOpen={isOpen}
-          onClose={onClose}
-        >
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Create your account</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody pb={6}>
-              <FormControl>
-                <FormLabel>First name</FormLabel>
-                <Input ref={initialRef} placeholder='First name' />
-              </FormControl>
-  
-              <FormControl mt={4}>
-                <FormLabel>Last name</FormLabel>
-                <Input placeholder='Last name' />
-              </FormControl>
-            </ModalBody>
-  
-            <ModalFooter>
-              <Button colorScheme='blue' mr={3}>
-                Save
-              </Button>
-              <Button onClick={onClose}>Cancel</Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-      </>
-    )
-  }
