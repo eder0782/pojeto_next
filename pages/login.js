@@ -25,8 +25,9 @@ import NextLink from "next/link"
 import { EmailIcon, LockIcon, ArrowRightIcon } from '@chakra-ui/icons'
 import Router from "next/router";
 // import Alerta from "../components/Alert";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useToast } from '@chakra-ui/react'
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 import api from "../utils/api";
 
 const Logo = (props) => {
@@ -48,19 +49,35 @@ const Logo = (props) => {
     );
   }
 
-function Alert(error, message) {
-    if (error) {
-        toast.error(message, {
-            theme: "colored"
-        })
+ 
 
+  function Alert(error, message) {
+    const toast = useToast()
+    if (error) {
+        // toast.error(message, {
+        //     theme: "colored"
+        // })
+        toast({
+          title:"Erro",
+          description:message,
+          status:'error',
+          duration:3000,
+          isClosable:true,
+          position:'top-right'
+        })
+  
     }
     else {
-        toast.success(message, {
-            theme: "colored"
-        })
+      toast({
+        title:"Sucesso",
+        description:message,
+        status:'success',
+        duration:3000,
+        isClosable:true,
+        position:'top-right'
+      })
     }
-}
+  }
 
 
 // 
@@ -115,7 +132,7 @@ function Login() {
     return (
 
         <>
-            <ToastContainer />
+            {/* <ToastContainer /> */}
             <Flex flexDirection="column"
                 width="100%"
                 height="100vh"

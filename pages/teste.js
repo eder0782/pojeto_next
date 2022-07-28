@@ -1,29 +1,39 @@
-import { useState } from 'react';
-import { CircularProgress, CircularProgressLabel, Button, Box } from '@chakra-ui/react'
+
+import { useState } from 'react'
+import { Skeleton, SkeletonCircle,Button,Stack,Box, SkeletonText } from '@chakra-ui/react'
 
   
 export default function Teste(){
-    // const { isOpen, onOpen, onClose } = useDisclosure();
-    const [estado,setEstado] = useState('hidden');
-    function handleEstato(){
-        if(estado==='hidden'){
-            setEstado('visible')
-        }
-        setTimeout(()=>{
-            setEstado('hidden')
-        },3000)
-    //    else{
-    //         setEstado(false)
-    //     }
-    }
-    return(
-        <>
-         <Button onClick={()=>{handleEstato()}}>Open Modal</Button>
-              <Box position='fixed' visibility={estado} top='30%' left='50%'>
-         <CircularProgress   isIndeterminate color='blue.300' />
-         </Box>
-        </>
-    )
+    const [isLoaded, setIsLoaded] = useState(false)
+  return (
+    <Stack padding={4} spacing={1}>
+      <Skeleton height='40px' isLoaded={isLoaded}>
+        <Box>Hello World!</Box>
+      </Skeleton>
+      <Skeleton
+        height='40px'
+        isLoaded={isLoaded}
+        bg='green.500'
+        color='white'
+        fadeDuration={1}
+      >
+        <Box>Hello React!</Box>
+      </Skeleton>
+      <Skeleton
+        height='40px'
+        isLoaded={isLoaded}
+        fadeDuration={4}
+        bg='blue.500'
+        color='white'
+      >
+        <Box>Hello ChakraUI!</Box>
+      </Skeleton>
+
+      <Box textAlign='center'>
+        <Button onClick={() => setIsLoaded((v) => !v)}>toggle</Button>
+      </Box>
+    </Stack>
+  )
 }
 
 

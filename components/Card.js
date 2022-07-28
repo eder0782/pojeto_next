@@ -45,11 +45,11 @@ export default function Card({ object }) {
     <div>
       <ModalEdit state={modalEdit} user={object}/>
       <ModalDelete state={modalDelete} user={object}/>
-      <Center py={6}>
+      <Center py={6} >
         <Stack
           borderWidth="1px"
           borderRadius="lg"
-          w={{ sm: '100%', md: '540px' }}
+          w={{ base: '100%', sm: '440px',md:'560px', lg:"560px"}}
           height={{ sm: '600px', md: '20rem' }}
           direction={{ base: 'column', md: 'row' }}
           bg={useColorModeValue('white', 'gray.900')}

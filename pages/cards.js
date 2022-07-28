@@ -5,6 +5,7 @@ import api from "../utils/api"
 import Card from "../components/Card"
 import SmallCentered from "../components/Footer"
 import NavBar from "../components/NavBar"
+import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
 
 import Router from 'next/router';
 import {
@@ -20,28 +21,33 @@ import {
     CircularProgress
 }
     from "@chakra-ui/react";
+import { faL } from "@fortawesome/free-solid-svg-icons"
 
 
 export default function Cards() {
     const [user, setUser] = useState([])
-    const [progress,setProgress] = useState("hidden");
+    const [progress, setProgress] = useState("hidden");
+    const [isLoading, setLoading] = useState(false);
 
-    useEffect( () => {
-        // setProgress('visible');
-        //  api.get('/listUserAll')
-        // .then((response) => {
-        //     setUser(response.data)
-        // })
-        // .catch((err) => {
-        //     console.log(err)
-        // })
-        handleUser();
+
+    useEffect(() => {
+
+
+        handleUser()
         // setTimeout(() => {
-        //     setProgress('hidden')
-            
-        // }, 1500);
-        // Router.replace('/cards');
-    },[user])
+        //     // setLoading(true);
+        //     setLoading(true);
+        // }, 1000)
+        // console.log('iciciou')
+    }, [])
+
+
+    useEffect(() => {
+
+        handleUser();
+
+    }, [user])
+
     // if(progress==="hidden"){
     //     setProgress("visible")
     //     setTimeout(()=>{
@@ -50,7 +56,7 @@ export default function Cards() {
 
     // }
     async function handleUser() {
-      //  setProgress('visible')
+        //  setProgress('visible')
         await api.get('/listUserAll')
             .then((response) => {
                 setUser(response.data)
@@ -58,15 +64,18 @@ export default function Cards() {
             .catch((err) => {
                 console.log(err)
             })
-       // setProgress('hidden')
+        setTimeout(()=>{
+            setLoading(true)
+        },3000)    
+        
     }
 
     return (
         <div>
             <NavBar />
 
-            <Box position='fixed'  visibility={progress }  top='30%' left='50%'>
-                <CircularProgress  isIndeterminate color='blue.300' />
+            <Box position='fixed' visibility={progress} top='30%' left='50%'>
+                <CircularProgress isIndeterminate color='blue.300' />
             </Box>
             <Container maxW="80rem" centerContent >
                 <SimpleGrid columns={{ base: '1', lg: '2' }} spacing={'10'}>
@@ -75,8 +84,18 @@ export default function Cards() {
                         user.length > 0 ?
                             user.map((obj) => {
                                 return (
+
                                     <Box key={obj._id}>
-                                        <Card object={obj}></Card>
+                                        <Skeleton
+                                            // height='40px'
+                                            isLoaded={isLoading}
+                                            // bg='green.500'
+                                            color='white'
+                                            fadeDuration={3}>
+
+
+                                            <Card object={obj}></Card>
+                                        </Skeleton>
                                     </Box>
                                 )
                                 // <WrapItem>
@@ -86,7 +105,10 @@ export default function Cards() {
 
                             :
                             <div></div>
+
+
                     }
+
                 </SimpleGrid>
             </Container>
             <SmallCentered />

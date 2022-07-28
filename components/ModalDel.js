@@ -1,7 +1,8 @@
 import { useEffect,useRef, useState } from 'react';
 import { useDisclosure } from '@chakra-ui/react'
+import { useToast } from '@chakra-ui/react'
 import api from '../utils/api'
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import Router from 'next/router';
 import ToastMessage from './ToastMessage';
@@ -27,24 +28,13 @@ import {
 //   FormControl,
 //   FormLabel
 } from '@chakra-ui/react';
-// import { useSelect } from '@mui/base';
 
-function Alert(error, message) {
-    if (error) {
-        toast.error(message, {
-            theme: "colored"
-        })
 
-    }
-    else {
-        toast.success(message, {
-            theme: "colored"
-        })
-    }
-}
+
 
 export default function ModalDelete({ state, user }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const toast = useToast();
     // const [msg,setMsg]=useState('');
     // const[err,setErr]=useState(false);
     // const[ativar,setAtivar]=useState(false);
@@ -57,6 +47,34 @@ export default function ModalDelete({ state, user }) {
     },)
     const initialRef = useRef(null)
     const finalRef = useRef(null)
+    function Alert(error, message) {
+      
+      console.log('chegou na mensagem')
+      if (error) {
+          // toast.error(message, {
+          //     theme: "colored"
+          // })
+          toast({
+            title:"Erro",
+            description:message,
+            status:'error',
+            duration:3000,
+            isClosable:true,
+            position:'top-right'
+          })
+    
+      }
+      else {
+        toast({
+          title:"Sucesso",
+          description:message,
+          status:'success',
+          duration:3000,
+          isClosable:true,
+          position:'top-right'
+        })
+      }
+    }
 
     const handleDelete = async (delEmail) => {
 
@@ -85,7 +103,7 @@ export default function ModalDelete({ state, user }) {
   
     return (
       <>
-        <ToastContainer />
+        {/* <ToastContainer /> */}
         <Modal
           initialFocusRef={initialRef}
           //   finalFocusRef={finalRef}
