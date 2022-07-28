@@ -18,28 +18,62 @@ import {
     SimpleGrid,
     Container,
     Box,
-    CircularProgress
+    CircularProgress,
+    useColorModeValue,
 }
     from "@chakra-ui/react";
 import { faL } from "@fortawesome/free-solid-svg-icons"
 
 
 export default function Cards() {
-    const [user, setUser] = useState([])
+    const [user, setUser] = useState([{
+        name:'teste',
+        email:'teste@teste.com',
+        password:'12121',
+        sobrenome: 'lastName',
+        photo: "https://img.icons8.com/ios-glyphs/344/user--v1.png",
+        active: true,
+        admin: true
+      },{
+        name:'teste',
+        email:'teste@teste.com',
+        password:'12121',
+        sobrenome: 'lastName',
+        photo: "https://img.icons8.com/ios-glyphs/344/user--v1.png",
+        active: true,
+        admin: true
+      },{
+        name:'teste',
+        email:'teste@teste.com',
+        password:'12121',
+        sobrenome: 'lastName',
+        photo: "https://img.icons8.com/ios-glyphs/344/user--v1.png",
+        active: true,
+        admin: true
+      },{
+        name:'teste',
+        email:'teste@teste.com',
+        password:'12121',
+        sobrenome: 'lastName',
+        photo: "https://img.icons8.com/ios-glyphs/344/user--v1.png",
+        active: true,
+        admin: true
+      }
+    ])
     const [progress, setProgress] = useState("hidden");
     const [isLoading, setLoading] = useState(false);
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
 
-        handleUser()
-        // setTimeout(() => {
-        //     // setLoading(true);
-        //     setLoading(true);
-        // }, 1000)
-        // console.log('iciciou')
-    }, [])
+    //     handleUser()
+    //     // setTimeout(() => {
+    //     //     // setLoading(true);
+    //     //     setLoading(true);
+    //     // }, 1000)
+    //     // console.log('iciciou')
+    // }, [])
 
 
     useEffect(() => {
@@ -66,7 +100,7 @@ export default function Cards() {
             })
         setTimeout(()=>{
             setLoading(true)
-        },3000)    
+        },4000)    
         
     }
 
@@ -90,10 +124,12 @@ export default function Cards() {
                                             // height='40px'
                                             isLoaded={isLoading}
                                             // bg='green.500'
-                                            color='white'
-                                            fadeDuration={3}>
-
-
+                                            // color='white'
+                                            fadeDuration={5}
+                                            bg={useColorModeValue('white', 'gray.900')}
+                                            
+                                            >
+                                            
                                             <Card object={obj}></Card>
                                         </Skeleton>
                                     </Box>
