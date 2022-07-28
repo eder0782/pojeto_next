@@ -62,6 +62,7 @@ export default function Cards() {
     ])
     const [progress, setProgress] = useState("hidden");
     const [isLoading, setLoading] = useState(false);
+    const[bgColor, setBgColor] = useState(useColorModeValue('white', 'gray.900'));
 
 
     // useEffect(() => {
@@ -126,7 +127,7 @@ export default function Cards() {
                                             // bg='green.500'
                                             // color='white'
                                             fadeDuration={5}
-                                            bg={useColorModeValue('white', 'gray.900')}
+                                            bg={bgColor}
                                             
                                             >
                                             
